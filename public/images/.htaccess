@@ -1,0 +1,40 @@
+<IfModule mod_rewrite.c>
+	RewriteBase /
+    <IfModule mod_negotiation.c>
+        Options -MultiViews
+    </IfModule>
+
+    RewriteEngine On
+    RewriteCond %{HTTPS} !=on
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+	#1and1 to enable PHP 5.4
+	AddHandler x-mapp-php6 .php
+
+    # Redirect Trailing Slashes...
+    RewriteRule ^(.*)/$  [L,R=301]
+    RewriteRule ^my-tutorial/$ /$1 [L,R=301]
+
+    # Handle Front Controller...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+
+	AddType application/vnd.ms-fontobject    .eot
+	AddType application/x-font-opentype      .otf
+	AddType image/svg+xml                    .svg
+	AddType application/x-font-ttf           .ttf
+	AddType application/font-woff            .woff
+	AddType application/font-woff2           .woff2
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch ".(eot|otf|svg|ttf|woff2?)$">
+    Header set Access-Control-Allow-Origin "*"
+  </FilesMatch>
+</IfModule>
+
+<Files "apple-app-site-association">
+ForceType 'application/json'
+</Files>
+

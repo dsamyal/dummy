@@ -1,0 +1,194 @@
+<header id="header" class="header-show-hide-on-scroll1 menu-align-right" >
+	<!-- Begin header inner -->
+	<div class="header-inner">
+	    <div class="container-fluid">
+    		<div class="row">
+    			<div class="col-xs-3 col-sm-4">
+                    <div class="search-bar">
+                       <form method="get">
+                            {{ csrf_field() }}
+                            <a href="#" class="search-icon @if($mainSearchFilter != '') hidden @endif" id="main-search-icon"><i class="fa fa-search search-position"></i></a>
+
+                            <div class="search_form_div">
+                                <input type="text" value="<?php echo htmlspecialchars($mainSearchFilter, ENT_QUOTES) ?>"
+                                       name="main-search-filter" id="main-search-filter" class="@if($mainSearchFilter == '') hidden @endif main-search-filter" placeholder="">
+
+                                <button id="search_close" class="<?php if(@$_GET['main-search-filter']){ echo 'ctm_show'; } ?>"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
+                            </div>
+
+                            <button class="@if($mainSearchFilter == '') hidden @endif search-icon" id="main-search-button" type="submit"><i class="fa fa-search"></i></button>
+                        </form> 
+                    </div>        
+                </div>
+    			<div class="col-xs-6 col-sm-4 text-center">
+    			    <div id="header-center">
+    					<a href="{{ route('site.index') }}" class="logo-dark">
+    						<span class="logo-text">ARTfora GALLERY</span>
+    					</a>
+    				</div>
+    			</div>
+    			<div class="col-xs-3 col-sm-4 text-right" id="header-right" >
+                    <div class="img_footer_div">
+                        <?php if(@$get_user_filter && @$get_user_filter->profile_image_url){ ?>
+                            <a href="#"  data-toggle="modal" data-target="#exampleModal_1">
+                              <img src="<?php echo $get_user_filter->profile_image_url; ?>" alt="logo" class="header__logo">
+                            </a>
+                        <?php } else { ?>
+                            <a href="#"  data-toggle="modal" data-target="#exampleModal_1">
+                              <img src="{{ asset('assets/img/logo.png') }}" alt="logo" class="header__logo">
+                            </a>
+                        <?php } ?>
+                    </div>
+                    
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal_1" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <div class="login__contact_hide_show">
+                                        <?php $userId = Auth::id(); ?>
+                                        <?php if($userId){ ?>
+                                            <a class="dropdown-item login_r_button" href="{{ route('logout') }}"
+                                                   onclick="event.preventDefault();
+                                                                 document.getElementById('logout-form').submit();">
+                                                    {{ __('Logout') }}
+                                                </a>
+
+                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                    @csrf
+                                                </form>
+                                        <?php } else { ?>
+                                            <button type="button" class="btn btn-primary login_r_button" data-toggle="modal" data-target="#exampleModal">
+                                                Login
+                                            </button>
+                                        <?php } ?>
+
+                                        <a href="#" class="login_r_button" data-toggle="modal" data-target="#logo_modal">
+                                            Contact Us
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true"></span>
+                                  <svg width="100%" height="100%" viewBox="0 0 4267 4267" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;"><g><circle cx="2133.33" cy="2133.33" r="2083.33"/><g><path d="M1091.67,3175l2083.33,-2083.33" style="fill:none;stroke:#c8c8c8;stroke-width:145.83px;"/><path d="M1091.67,1091.67l2083.33,2083.33" style="fill:none;stroke:#c8c8c8;stroke-width:145.83px;"/></g></g></svg>
+                                </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="modal_heading">
+                                        <center><span class="logo-text">LOGIN ARTfora</span></center>
+                                    </div>
+                                    <div class="modal_form">
+                                    <form method="POST" action="{{ route('login') }}">
+                                        @csrf
+
+                                        <div class="form-group email_message">
+                                            <!-- <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label> -->
+                                            <span class="form_icon"><img class="btn-icon" style="margin-left: 3px;" width="23" height="23" src="/images/icon_envelope.svg" alt="Name"></span>
+                                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required placeholder="EMAIL">
+
+                                                @error('email')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                        </div>
+
+                                        <div class="form-group">
+                                            <!-- <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label> -->
+                                            <span class="form_icon"><img class="btn-icon" style="margin-left: 3px;" width="23" height="23" src="/images/icon_key.svg" alt="Name"></span>
+                                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required placeholder="PASSWORD">
+                                                @error('password')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                        </div>
+
+                                        <div class="form-group m-0">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+
+                                                    <label class="form-check-label" for="remember">
+                                                        {{ __('Remember Me') }}
+                                                    </label>
+                                                </div>
+                                        </div>
+
+                                        <div class="form-group m-0">
+                                            <div class="login_button_">
+                                                <button type="submit" class="btn btn-primary button_l">
+                                                    {{ __('Login') }}
+                                                </button>
+
+                                                @if (Route::has('password.request'))
+                                                    <p class="btn btn-link forgot_in">
+                                                        <!-- {{ __('Forgot Your Password?') }} -->
+                                                        If you have forgotten your password, please open the ARTfora app and log out. Then choose "Forgot password" from the login screen.
+                                                    </p>
+                                                @endif
+                                                </div>
+                                            </div>
+                                    </form>
+                                </div>
+                                </div>
+                                <!-- <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="logo_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true"></span>
+                                  <svg width="100%" height="100%" viewBox="0 0 4267 4267" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;"><g><circle cx="2133.33" cy="2133.33" r="2083.33"/><g><path d="M1091.67,3175l2083.33,-2083.33" style="fill:none;stroke:#c8c8c8;stroke-width:145.83px;"/><path d="M1091.67,1091.67l2083.33,2083.33" style="fill:none;stroke:#c8c8c8;stroke-width:145.83px;"/></g></g></svg>
+                                </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="modal_heading">
+                                        <center><span class="logo-text">CONTACT ARTfora</span></center>
+                                    </div>
+                                    <div class="modal_form">
+                                        <form method="POST" action="{!! action('SiteController@contact_modal') !!}">
+                                            {{ csrf_field() }}
+                                            <div class="form-group">
+                                                <span class="form_icon"><img class="btn-icon" style="margin-left: 3px;" width="23" height="23" src="/images/icon_user.svg" alt="Name"></span>
+                                                <input type="text" class="form-control" name="contact_name" placeholder="NAME" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <span class="form_icon"><img class="btn-icon" style="margin-left: 3px;" width="23" height="23" src="/images/icon_envelope.svg" alt="Email address"></span>
+                                                <input type="email" class="form-control" name="contact_email" placeholder="EMAIL ADDRESS" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <textarea placeholder="MESSAGE" rows="10" name="contact_message" class="form-control form-control_message" required></textarea>
+                                            </div>
+                                            <button class="detailed-button" name="submit" value="send">SEND MESSAGE</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+    		</div>
+		</div>
+	</div>
+    <input type="hidden" id = "home_url_header" value="{{ url('/') }}">
+</header>

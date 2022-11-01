@@ -1,0 +1,75 @@
+<header id="header" class="header-show-hide-on-scroll1 menu-align-right" >
+	<!-- Begin header inner -->
+	<div class="header-inner">
+	    <div class="container-fluid">
+    		<div class="row">
+    			<div class="col-xs-3 col-sm-4">
+                    <div class="search-bar">
+                       <form method="get">
+                            {{ csrf_field() }}
+                            <a href="#" class="search-icon @if($mainSearchFilter != '') hidden @endif" id="main-search-icon"><i class="fa fa-search search-position"></i></a>
+
+                            <div class="search_form_div">
+                                <input type="text" value="<?php echo htmlspecialchars($mainSearchFilter, ENT_QUOTES) ?>"
+                                       name="main-search-filter" id="main-search-filter" class="@if($mainSearchFilter == '') hidden @endif main-search-filter" placeholder="">
+
+                                <button id="search_close" class="<?php if(@$_GET['main-search-filter']){ echo 'ctm_show'; } ?>"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
+                            </div>
+
+                            <button class="@if($mainSearchFilter == '') hidden @endif search-icon" id="main-search-button" type="submit"><i class="fa fa-search"></i></button>
+                        </form> 
+                    </div>        
+                </div>
+    			<div class="col-xs-6 col-sm-4 text-center">
+    			    <div id="header-center">
+    					<a href="{{ route('site.index') }}" class="logo-dark">
+    						<span class="logo-text">ARTfora GALLERY</span>
+    					</a>
+    				</div>
+    			</div>
+    			<div class="col-xs-3 col-sm-4 text-right" id="header-right">
+                    <div class="img_footer_div">
+                        <a href="#" class="" data-toggle="modal" data-target="#logo_modal">
+                            <img src="{{ asset('assets/img/logo.png') }}" alt="logo">
+                        </a>
+                    </div>
+                    
+                    <!-- Modal -->
+                    <div class="modal fade" id="logo_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <div class="modal_heading">
+                                        <center><span class="logo-text">CONTACT ARTfora</span></center>
+                                    </div>
+                                    <div class="modal_form">
+                                        <form method="POST" action="{!! action('SiteController@contact_modal') !!}">
+                                            {{ csrf_field() }}
+                                            <div class="form-group">
+                                                <span class="form_icon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                                                <input type="text" class="form-control" name="contact_name" placeholder="NAME" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <span class="form_icon"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+                                                <input type="email" class="form-control" name="contact_email" placeholder="EMAIL ADDRESS" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <textarea placeholder="MESSAGE" rows="10" name="contact_message" class="form-control" required></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="submit" name="submit" value="send" class="btn btn-primary mb-2 ctm_submit">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+    		</div>
+		</div>
+	</div>
+    <input type="hidden" id = "home_url_header" value="{{ url('/') }}">
+</header>

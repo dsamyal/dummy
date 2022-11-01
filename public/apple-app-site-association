@@ -1,0 +1,32 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["RVVKF4BRG3.com.artfora.Artfora"],
+        "components": [
+          {
+            "/": "/email-veryfied/*"
+          },
+	  {
+	    "/": "/verify_forgotpassword",
+	    "?": [ "*" ]	  
+	  },
+	  {
+	    "/": "/open-shared-post",
+	    "?": [ "*" ]
+	  },
+	  {
+	    "/": "/update-email-veryfied",
+	    "?": [ "*" ]
+	  },
+	  {
+	    "/": "/new_pass",
+	    "?": [ "*" ]
+	  }
+        ]
+      }
+    ]
+  }
+}
+
+

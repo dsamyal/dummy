@@ -1,0 +1,116 @@
+.radio0, .radio1, .radio2, .radio3 {
+    background: #8B8A8F;
+    border-radius: 15px;
+    padding: 3px 4px;
+    color: #393939;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 45px;
+    width: 270px;
+    font-size: 21px;
+    position: relative;
+    transition: all .5s ease-in-out;
+
+    &.radio_two_show_price, &.radio_two_sale_only, &.radio_two_sort_by, &.radio_two_auto_load {
+        background: #8B8A8F;
+
+        .bar {
+            background: #ffff;
+            left: 120px;
+            border-radius: 15px;
+        }
+
+        label[for='radio_one_show_price'], label[for='radio_one_sale_only'], label[for='radio_one_sort_by'], label[for='radio_one_auto_load'] {
+            // padding-top: 7px;
+            color: #393939;
+        }
+        
+        label[for='radio_two_show_price'], label[for='radio_two_sale_only'], label[for='radio_two_sort_by'], label[for='radio_two_auto_load'] {
+            // padding-top: 7px;
+            text-align: right;
+            color: #393939;
+        }
+    }
+
+    label[for='radio_one_show_price'], label[for='radio_one_sale_only'], label[for='radio_one_sort_by'], label[for='radio_one_auto_load'] {
+        // padding-top: 7px;
+        text-align: left;
+    }
+
+    .wrap {
+        width: 100%;
+        // display: flex;
+        // justify-content: space-between;
+        align-items: center;
+        border-radius: 13px;
+        position: relative;
+        height: 44px;
+        display: inline-block;
+        vertical-align: middle;   
+    }
+
+    input {
+        opacity: 0;
+        display: none;
+        pointer-events: none;
+    }
+
+    label {
+        position: relative;
+        z-index: 1;
+        margin-bottom: 0px;
+        cursor: pointer;
+        transition: all .5s ease-in-out;
+        user-select: none;
+
+        &[for='radio_one_show_price'], &[for='radio_one_sale_only'], &[for='radio_one_sort_by'], &[for='radio_one_auto_load'] {
+            padding-left: 30px;
+            width: 50%;
+            color: #393939;
+        }
+
+        &[for='radio_two_show_price'], &[for='radio_two_sale_only'], &[for='radio_two_auto_load'] {
+            padding-right: 30px;
+            width: 50%;
+            text-align: right;
+            // padding-top: 7px;
+        }
+    }
+
+    #radio_one_show_price, #radio_one_sale_only, #radio_one_sort_by, #radio_one_auto_load {
+        color: #393939;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    #radio_two_show_price, #radio_two_sale_only, #radio_two_sort_by, #radio_two_auto_load {
+        position: absolute;
+        right: 100px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .bar {
+        position: absolute;
+        left: -3px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #ffffff;
+        height: 44px;
+        width: 146px;
+        border-radius: 13px;
+        transition: all .5s ease-in-out;
+    }
+}
+.radio2 {
+    label{
+        &[for='radio_two_sort_by']{padding-right: 24px; width: 50%;
+        text-align: right;}
+    }
+}
+
+// &[for='radio_two_sort_by'],

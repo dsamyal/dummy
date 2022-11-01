@@ -1,0 +1,20 @@
+<IfModule mod_rewrite.c>
+	RewriteBase /
+    <IfModule mod_negotiation.c>
+        Options -MultiViews
+    </IfModule>
+	
+	AddType application/vnd.ms-fontobject    .eot
+	AddType application/x-font-opentype      .otf
+	AddType image/svg+xml                    .svg
+	AddType application/x-font-ttf           .ttf
+	AddType application/font-woff            .woff
+	AddType application/font-woff2           .woff2
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch ".(eot|otf|svg|ttf|woff2?)$">
+    Header set Access-Control-Allow-Origin "*"
+  </FilesMatch>
+</IfModule>
+

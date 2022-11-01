@@ -1,0 +1,185 @@
+@extends('layouts.front')
+@section('content')
+    <div class="header-fixed">
+        @include('layouts.frontheader')
+
+        <div class="container-fluid">
+            <div class="homepage-filter-tags-bar">
+                <div class="menu-wrapper">
+                    <ul class="col-xs-12 text-left filter-tags-bar menu">
+                        <li class="item filter-gallery-groups prozak-light-family filter-gallery-toggle-category slick-current text-uppercase @if($filter_value == "All") filter-gallery-toggle-active @endif " data-type="All" data-filter-type="type" tabindex="0" autofocus>All</li>
+                        @foreach($types as $count => $type)
+                            <li class="item filter-gallery-groups filter-gallery-toggle-category @if($filter_value == $type->type) filter-gallery-toggle-active @endif " data-type="{{$type->type}}" data-filter-type="type" tabindex="{{$count + 1}}">{{$type->type}}</li>
+                        @endforeach
+                    </ul>
+                    <div class="paddles">
+                        <button class="left-paddle paddle hidden slick-prev slick-arrow">
+                            <
+                        </button>
+                        <button class="right-paddle paddle slick-next slick-arrow">
+                            >
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="homepage-filter-bar">
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 mob-space">
+                        <span class="@if($filter_value !='All') product-filter-disable @else filter-gallery-toggle @endif" @if($filter_value !='All') style="padding-right:34px;" @endif data-type="{{$filter_value}}" data-filter-type="type">{{$filter_value}} @if($filter_value !='All') <span class="filter-disabled"><div>x</div></span> @endif</span>
+                        @if ($filter_user_name!='')
+                            <span class="filter-gallery-toggle-active product-filter-disable  prozak-light-family text-uppercase" style="padding-right:34px;" data-type="{{$filter_user_name}}" data-filter-type="user">{{$filter_user_name}} <span class="filter-disabled"><div>x</div></span></span>
+                        @endif
+                    </div>
+
+                    <div class="col-xs-6 col-sm-6 text-right">
+                        @if($gallery_type == 'random')
+
+                            <span class="product-filter-order filter-gallery-toggle" data-type="latest" data-filter-type="ordering">Latest</span>
+                        @else
+                            <span class="product-filter-order filter-gallery-toggle" data-type="random" data-filter-type="ordering">Random</span>
+                        @endif
+
+                        @if($gallery_view == 'justified-with')
+                            <span class="filter-gallery-icon" data-type="square" data-show="justified-without">
+                               <!--  <img class="img-responsive" src="{{ asset('assets/img/icon_gallery_square_new.png') }}" /> -->
+                              <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="33" height="4.8" rx="1" fill="#EAEAED"/>
+                                <rect y="28.2" width="33" height="4.8" rx="1" fill="#EAEAED"/>
+                                <rect y="8.60001" width="33" height="15.8" rx="1" fill="#EAEAED"/>
+                             </svg>
+                            </span>
+                        @elseif($gallery_view == 'square')
+                            <span class="filter-gallery-icon" data-type="justified-without" data-show="justified-with">
+                                <!-- <img class="img-responsive" src="{{ asset('assets/img/icon_gallery_justified_new.png') }}" />
+                                 -->
+                                 <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="15.4" height="15.4" rx="3" fill="#EAEAED"/>
+                                    <rect y="17.6" width="15.4" height="15.4" rx="3" fill="#EAEAED"/>
+                                    <rect x="17.6" width="15.4" height="15.4" rx="3" fill="#EAEAED"/>
+                                    <rect x="17.6" y="17.6" width="15.4" height="15.4" rx="3" fill="#EAEAED"/>
+                                  </svg>
+                            </span>
+                        @else
+                            <span class="filter-gallery-icon" data-type="justified-with" data-show="square">
+                               <!--  <img class="img-responsive" src="{{ asset('assets/img/icon_gallery_info_new.png') }}" /> -->
+                             <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="14.6667" height="19.1172" rx="3" fill="#EAEAED"/>
+                                    <rect y="22.9862" width="14.6667" height="10.0138" rx="3" fill="#EAEAED"/>
+                                    <rect x="18.5625" width="14.4375" height="33" rx="3" fill="#EAEAED"/>
+                                </svg>
+                            </span>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section id="gallery-single-section" style="margin-top:200px;">
+        <div class="container-fluid">
+            <div class="mange-space">
+                <div id="post-container" data-count= "{{ $count }}">
+                    @include('site._post')
+                </div>
+            </div>
+        </div>
+        <input type="hidden" id = "toggle_options_url" value="{{url('toggle_options')}}">
+    </section>
+    <!-- End gallery single section -->
+@endsection
+
+@section('scripts')
+    <link rel='stylesheet' href='https://rawgit.com/kenwheeler/slick/master/slick/slick.css'>
+    <link rel='stylesheet' href='https://rawgit.com/kenwheeler/slick/master/slick/slick-theme.css'>
+    <link rel='stylesheet' href='{{ asset('assets/css/menu.css') }}'>
+    <script src="{{ asset('assets/js/menu.js') }}"></script>
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $('.filter-gallery-icon').click(function(){
+            var type = $(this).attr('data-type');
+            var show = $(this).attr('data-show');
+
+
+            $.ajax({
+                type: "POST",
+                url: "{{url('toggle_options')}}",
+                data: {gallery_view:type},
+                success:function(response)
+                {
+                    window.location.reload();
+                }
+            });
+        });
+
+        $(".search-icon").click(function(){
+            $("#main-search-icon").addClass('hidden');
+            $("#main-search-filter").removeClass('hidden');
+            $("#main-search-button").removeClass('hidden');
+            $("#main-search-filter").focus();
+
+        });
+
+        $('.filter-gallery-toggle-category, .product-filter-order').click(function(){
+            var gallery_type = $(this).attr('data-type');
+            var filterType = $(this).data('filter-type');
+
+            $('.filter-gallery-toggle-category, .product-filter-order').removeClass('filter-gallery-toggle-active');
+            $(this).addClass('filter-gallery-toggle-active');
+
+            $.ajax({
+                type: "POST",
+                url: "{{url('toggle_options')}}",
+            data: {gallery_type:gallery_type, type:filterType},
+            success:function(response)
+            {
+                if (gallery_type == "All") {
+                    window.location.href="{{ route('site.index') }}";
+                } else {
+                    window.location.reload();
+                }
+
+            }
+        });
+
+        });
+
+        $('.product-filter-disable').click(function(){
+            var gallery_type = $(this).attr('data-type');
+            var filterType = $(this).data('filter-type');
+
+            $.ajax({
+                type: "POST",
+                url: "{{url('toggle_options')}}",
+                data: {gallery_type:gallery_type, type:filterType, action:"disable"},
+                success:function(response)
+                {
+                    window.location.reload();
+                }
+            });
+        });
+
+        $('.main-page-user-click').on("click",function(e) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            var user_id = $(this).data('user-id');
+            var url = $("#toggle_options_url").val();
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: {type:"user", user_id:user_id},
+                success:function(response)
+                {
+                    window.location.reload();
+                }
+            });
+
+        });
+
+    </script>
+@endsection

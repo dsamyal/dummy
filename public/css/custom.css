@@ -1,0 +1,354 @@
+.radio0,
+.radio1,
+.radio2,
+.radio3 {
+  background: #8B8A8F;
+  border-radius: 15px;
+  padding: 3px 4px;
+  color: #393939;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 45px;
+  width: 270px;
+  font-size: 21px;
+  position: relative;
+  transition: all 0.5s ease-in-out;
+}
+
+.radio0.radio_two_show_price,
+.radio0.radio_two_sale_only,
+.radio0.radio_two_sort_by,
+.radio0.radio_two_auto_load,
+.radio1.radio_two_show_price,
+.radio1.radio_two_sale_only,
+.radio1.radio_two_sort_by,
+.radio1.radio_two_auto_load,
+.radio2.radio_two_show_price,
+.radio2.radio_two_sale_only,
+.radio2.radio_two_sort_by,
+.radio2.radio_two_auto_load,
+.radio3.radio_two_show_price,
+.radio3.radio_two_sale_only,
+.radio3.radio_two_sort_by,
+.radio3.radio_two_auto_load {
+  background: #8B8A8F;
+}
+
+.radio0.radio_two_show_price .bar,
+.radio0.radio_two_sale_only .bar,
+.radio0.radio_two_sort_by .bar,
+.radio0.radio_two_auto_load .bar,
+.radio1.radio_two_show_price .bar,
+.radio1.radio_two_sale_only .bar,
+.radio1.radio_two_sort_by .bar,
+.radio1.radio_two_auto_load .bar,
+.radio2.radio_two_show_price .bar,
+.radio2.radio_two_sale_only .bar,
+.radio2.radio_two_sort_by .bar,
+.radio2.radio_two_auto_load .bar,
+.radio3.radio_two_show_price .bar,
+.radio3.radio_two_sale_only .bar,
+.radio3.radio_two_sort_by .bar,
+.radio3.radio_two_auto_load .bar {
+  background: white;
+  left: 120px;
+  border-radius: 15px;
+}
+
+.radio0.radio_two_show_price label[for=radio_one_show_price],
+.radio0.radio_two_show_price label[for=radio_one_sale_only],
+.radio0.radio_two_show_price label[for=radio_one_sort_by],
+.radio0.radio_two_show_price label[for=radio_one_auto_load],
+.radio0.radio_two_sale_only label[for=radio_one_show_price],
+.radio0.radio_two_sale_only label[for=radio_one_sale_only],
+.radio0.radio_two_sale_only label[for=radio_one_sort_by],
+.radio0.radio_two_sale_only label[for=radio_one_auto_load],
+.radio0.radio_two_sort_by label[for=radio_one_show_price],
+.radio0.radio_two_sort_by label[for=radio_one_sale_only],
+.radio0.radio_two_sort_by label[for=radio_one_sort_by],
+.radio0.radio_two_sort_by label[for=radio_one_auto_load],
+.radio0.radio_two_auto_load label[for=radio_one_show_price],
+.radio0.radio_two_auto_load label[for=radio_one_sale_only],
+.radio0.radio_two_auto_load label[for=radio_one_sort_by],
+.radio0.radio_two_auto_load label[for=radio_one_auto_load],
+.radio1.radio_two_show_price label[for=radio_one_show_price],
+.radio1.radio_two_show_price label[for=radio_one_sale_only],
+.radio1.radio_two_show_price label[for=radio_one_sort_by],
+.radio1.radio_two_show_price label[for=radio_one_auto_load],
+.radio1.radio_two_sale_only label[for=radio_one_show_price],
+.radio1.radio_two_sale_only label[for=radio_one_sale_only],
+.radio1.radio_two_sale_only label[for=radio_one_sort_by],
+.radio1.radio_two_sale_only label[for=radio_one_auto_load],
+.radio1.radio_two_sort_by label[for=radio_one_show_price],
+.radio1.radio_two_sort_by label[for=radio_one_sale_only],
+.radio1.radio_two_sort_by label[for=radio_one_sort_by],
+.radio1.radio_two_sort_by label[for=radio_one_auto_load],
+.radio1.radio_two_auto_load label[for=radio_one_show_price],
+.radio1.radio_two_auto_load label[for=radio_one_sale_only],
+.radio1.radio_two_auto_load label[for=radio_one_sort_by],
+.radio1.radio_two_auto_load label[for=radio_one_auto_load],
+.radio2.radio_two_show_price label[for=radio_one_show_price],
+.radio2.radio_two_show_price label[for=radio_one_sale_only],
+.radio2.radio_two_show_price label[for=radio_one_sort_by],
+.radio2.radio_two_show_price label[for=radio_one_auto_load],
+.radio2.radio_two_sale_only label[for=radio_one_show_price],
+.radio2.radio_two_sale_only label[for=radio_one_sale_only],
+.radio2.radio_two_sale_only label[for=radio_one_sort_by],
+.radio2.radio_two_sale_only label[for=radio_one_auto_load],
+.radio2.radio_two_sort_by label[for=radio_one_show_price],
+.radio2.radio_two_sort_by label[for=radio_one_sale_only],
+.radio2.radio_two_sort_by label[for=radio_one_sort_by],
+.radio2.radio_two_sort_by label[for=radio_one_auto_load],
+.radio2.radio_two_auto_load label[for=radio_one_show_price],
+.radio2.radio_two_auto_load label[for=radio_one_sale_only],
+.radio2.radio_two_auto_load label[for=radio_one_sort_by],
+.radio2.radio_two_auto_load label[for=radio_one_auto_load],
+.radio3.radio_two_show_price label[for=radio_one_show_price],
+.radio3.radio_two_show_price label[for=radio_one_sale_only],
+.radio3.radio_two_show_price label[for=radio_one_sort_by],
+.radio3.radio_two_show_price label[for=radio_one_auto_load],
+.radio3.radio_two_sale_only label[for=radio_one_show_price],
+.radio3.radio_two_sale_only label[for=radio_one_sale_only],
+.radio3.radio_two_sale_only label[for=radio_one_sort_by],
+.radio3.radio_two_sale_only label[for=radio_one_auto_load],
+.radio3.radio_two_sort_by label[for=radio_one_show_price],
+.radio3.radio_two_sort_by label[for=radio_one_sale_only],
+.radio3.radio_two_sort_by label[for=radio_one_sort_by],
+.radio3.radio_two_sort_by label[for=radio_one_auto_load],
+.radio3.radio_two_auto_load label[for=radio_one_show_price],
+.radio3.radio_two_auto_load label[for=radio_one_sale_only],
+.radio3.radio_two_auto_load label[for=radio_one_sort_by],
+.radio3.radio_two_auto_load label[for=radio_one_auto_load] {
+  color: #393939;
+}
+
+.radio0.radio_two_show_price label[for=radio_two_show_price],
+.radio0.radio_two_show_price label[for=radio_two_sale_only],
+.radio0.radio_two_show_price label[for=radio_two_sort_by],
+.radio0.radio_two_show_price label[for=radio_two_auto_load],
+.radio0.radio_two_sale_only label[for=radio_two_show_price],
+.radio0.radio_two_sale_only label[for=radio_two_sale_only],
+.radio0.radio_two_sale_only label[for=radio_two_sort_by],
+.radio0.radio_two_sale_only label[for=radio_two_auto_load],
+.radio0.radio_two_sort_by label[for=radio_two_show_price],
+.radio0.radio_two_sort_by label[for=radio_two_sale_only],
+.radio0.radio_two_sort_by label[for=radio_two_sort_by],
+.radio0.radio_two_sort_by label[for=radio_two_auto_load],
+.radio0.radio_two_auto_load label[for=radio_two_show_price],
+.radio0.radio_two_auto_load label[for=radio_two_sale_only],
+.radio0.radio_two_auto_load label[for=radio_two_sort_by],
+.radio0.radio_two_auto_load label[for=radio_two_auto_load],
+.radio1.radio_two_show_price label[for=radio_two_show_price],
+.radio1.radio_two_show_price label[for=radio_two_sale_only],
+.radio1.radio_two_show_price label[for=radio_two_sort_by],
+.radio1.radio_two_show_price label[for=radio_two_auto_load],
+.radio1.radio_two_sale_only label[for=radio_two_show_price],
+.radio1.radio_two_sale_only label[for=radio_two_sale_only],
+.radio1.radio_two_sale_only label[for=radio_two_sort_by],
+.radio1.radio_two_sale_only label[for=radio_two_auto_load],
+.radio1.radio_two_sort_by label[for=radio_two_show_price],
+.radio1.radio_two_sort_by label[for=radio_two_sale_only],
+.radio1.radio_two_sort_by label[for=radio_two_sort_by],
+.radio1.radio_two_sort_by label[for=radio_two_auto_load],
+.radio1.radio_two_auto_load label[for=radio_two_show_price],
+.radio1.radio_two_auto_load label[for=radio_two_sale_only],
+.radio1.radio_two_auto_load label[for=radio_two_sort_by],
+.radio1.radio_two_auto_load label[for=radio_two_auto_load],
+.radio2.radio_two_show_price label[for=radio_two_show_price],
+.radio2.radio_two_show_price label[for=radio_two_sale_only],
+.radio2.radio_two_show_price label[for=radio_two_sort_by],
+.radio2.radio_two_show_price label[for=radio_two_auto_load],
+.radio2.radio_two_sale_only label[for=radio_two_show_price],
+.radio2.radio_two_sale_only label[for=radio_two_sale_only],
+.radio2.radio_two_sale_only label[for=radio_two_sort_by],
+.radio2.radio_two_sale_only label[for=radio_two_auto_load],
+.radio2.radio_two_sort_by label[for=radio_two_show_price],
+.radio2.radio_two_sort_by label[for=radio_two_sale_only],
+.radio2.radio_two_sort_by label[for=radio_two_sort_by],
+.radio2.radio_two_sort_by label[for=radio_two_auto_load],
+.radio2.radio_two_auto_load label[for=radio_two_show_price],
+.radio2.radio_two_auto_load label[for=radio_two_sale_only],
+.radio2.radio_two_auto_load label[for=radio_two_sort_by],
+.radio2.radio_two_auto_load label[for=radio_two_auto_load],
+.radio3.radio_two_show_price label[for=radio_two_show_price],
+.radio3.radio_two_show_price label[for=radio_two_sale_only],
+.radio3.radio_two_show_price label[for=radio_two_sort_by],
+.radio3.radio_two_show_price label[for=radio_two_auto_load],
+.radio3.radio_two_sale_only label[for=radio_two_show_price],
+.radio3.radio_two_sale_only label[for=radio_two_sale_only],
+.radio3.radio_two_sale_only label[for=radio_two_sort_by],
+.radio3.radio_two_sale_only label[for=radio_two_auto_load],
+.radio3.radio_two_sort_by label[for=radio_two_show_price],
+.radio3.radio_two_sort_by label[for=radio_two_sale_only],
+.radio3.radio_two_sort_by label[for=radio_two_sort_by],
+.radio3.radio_two_sort_by label[for=radio_two_auto_load],
+.radio3.radio_two_auto_load label[for=radio_two_show_price],
+.radio3.radio_two_auto_load label[for=radio_two_sale_only],
+.radio3.radio_two_auto_load label[for=radio_two_sort_by],
+.radio3.radio_two_auto_load label[for=radio_two_auto_load] {
+  text-align: right;
+  color: #393939;
+}
+
+.radio0 label[for=radio_one_show_price],
+.radio0 label[for=radio_one_sale_only],
+.radio0 label[for=radio_one_sort_by],
+.radio0 label[for=radio_one_auto_load],
+.radio1 label[for=radio_one_show_price],
+.radio1 label[for=radio_one_sale_only],
+.radio1 label[for=radio_one_sort_by],
+.radio1 label[for=radio_one_auto_load],
+.radio2 label[for=radio_one_show_price],
+.radio2 label[for=radio_one_sale_only],
+.radio2 label[for=radio_one_sort_by],
+.radio2 label[for=radio_one_auto_load],
+.radio3 label[for=radio_one_show_price],
+.radio3 label[for=radio_one_sale_only],
+.radio3 label[for=radio_one_sort_by],
+.radio3 label[for=radio_one_auto_load] {
+  text-align: left;
+}
+
+.radio0 .wrap,
+.radio1 .wrap,
+.radio2 .wrap,
+.radio3 .wrap {
+  width: 100%;
+  align-items: center;
+  border-radius: 13px;
+  position: relative;
+  height: 44px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.radio0 input,
+.radio1 input,
+.radio2 input,
+.radio3 input {
+  opacity: 0;
+  display: none;
+  pointer-events: none;
+}
+
+.radio0 label,
+.radio1 label,
+.radio2 label,
+.radio3 label {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 0px;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.radio0 label[for=radio_one_show_price],
+.radio0 label[for=radio_one_sale_only],
+.radio0 label[for=radio_one_sort_by],
+.radio0 label[for=radio_one_auto_load],
+.radio1 label[for=radio_one_show_price],
+.radio1 label[for=radio_one_sale_only],
+.radio1 label[for=radio_one_sort_by],
+.radio1 label[for=radio_one_auto_load],
+.radio2 label[for=radio_one_show_price],
+.radio2 label[for=radio_one_sale_only],
+.radio2 label[for=radio_one_sort_by],
+.radio2 label[for=radio_one_auto_load],
+.radio3 label[for=radio_one_show_price],
+.radio3 label[for=radio_one_sale_only],
+.radio3 label[for=radio_one_sort_by],
+.radio3 label[for=radio_one_auto_load] {
+  padding-left: 30px;
+  width: 50%;
+  color: #393939;
+}
+
+.radio0 label[for=radio_two_show_price],
+.radio0 label[for=radio_two_sale_only],
+.radio0 label[for=radio_two_auto_load],
+.radio1 label[for=radio_two_show_price],
+.radio1 label[for=radio_two_sale_only],
+.radio1 label[for=radio_two_auto_load],
+.radio2 label[for=radio_two_show_price],
+.radio2 label[for=radio_two_sale_only],
+.radio2 label[for=radio_two_auto_load],
+.radio3 label[for=radio_two_show_price],
+.radio3 label[for=radio_two_sale_only],
+.radio3 label[for=radio_two_auto_load] {
+  padding-right: 30px;
+  width: 50%;
+  text-align: right;
+}
+
+.radio0 #radio_one_show_price,
+.radio0 #radio_one_sale_only,
+.radio0 #radio_one_sort_by,
+.radio0 #radio_one_auto_load,
+.radio1 #radio_one_show_price,
+.radio1 #radio_one_sale_only,
+.radio1 #radio_one_sort_by,
+.radio1 #radio_one_auto_load,
+.radio2 #radio_one_show_price,
+.radio2 #radio_one_sale_only,
+.radio2 #radio_one_sort_by,
+.radio2 #radio_one_auto_load,
+.radio3 #radio_one_show_price,
+.radio3 #radio_one_sale_only,
+.radio3 #radio_one_sort_by,
+.radio3 #radio_one_auto_load {
+  color: #393939;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.radio0 #radio_two_show_price,
+.radio0 #radio_two_sale_only,
+.radio0 #radio_two_sort_by,
+.radio0 #radio_two_auto_load,
+.radio1 #radio_two_show_price,
+.radio1 #radio_two_sale_only,
+.radio1 #radio_two_sort_by,
+.radio1 #radio_two_auto_load,
+.radio2 #radio_two_show_price,
+.radio2 #radio_two_sale_only,
+.radio2 #radio_two_sort_by,
+.radio2 #radio_two_auto_load,
+.radio3 #radio_two_show_price,
+.radio3 #radio_two_sale_only,
+.radio3 #radio_two_sort_by,
+.radio3 #radio_two_auto_load {
+  position: absolute;
+  right: 100px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.radio0 .bar,
+.radio1 .bar,
+.radio2 .bar,
+.radio3 .bar {
+  position: absolute;
+  left: -3px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #ffffff;
+  height: 44px;
+  width: 146px;
+  border-radius: 13px;
+  transition: all 0.5s ease-in-out;
+}
+
+.radio2 label[for=radio_two_sort_by] {
+  padding-right: 24px;
+  width: 50%;
+  text-align: right;
+}
+

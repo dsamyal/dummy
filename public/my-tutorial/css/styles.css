@@ -1,0 +1,136 @@
+@font-face {
+  font-family: prozak-regular;
+  src: url(../../fonts/prozak-regular.ttf);
+}
+
+@font-face {
+  font-family: prozak-bold;
+  src: url(../../fonts/prozak-bold.ttf);
+}
+
+@font-face {
+  font-family: ibm-medium;
+  src: url(../../fonts/IBMPlexSansCondensed-Medium.ttf);
+}
+
+@font-face {
+  font-family: ibm-bold;
+  src: url(../../fonts/IBMPlexSansCondensed-Bold.ttf);
+}
+
+
+
+
+
+a {
+  color:  #fff;
+}
+
+html, body, header {
+  background-color: #2b2b2b;
+  color: #C8C8C8;
+  padding: 0px;
+  margin: 0px;
+}
+
+.content {
+  margin: auto;
+  padding: 20px 20px 0 20px;
+}
+
+body, h1, h2, h3, h4, h5, h6 {
+  font-family: prozak-regular, Arial, Helvetica, sans-serif; 
+}
+
+.logo-type {
+  font-family: prozak-regular, Arial, Helvetica, sans-serif;
+  font-size: 40px;
+  text-align: center;
+  letter-spacing: 5px;
+}
+
+.menu {
+  height: 65px;
+  font-family: ibm-regular, Arial, Helvetica, sans-serif;
+  padding-top: 5px;
+}
+
+
+.menu p {
+  line-height: 32px;
+  padding: 4px 25px;
+  background-color: #ccc;
+  color: #2b2b2b;
+  display:  inline-block;
+  margin-right: 10px;
+  height: 30px;
+  background-color: #999;
+  border-radius: 8px;
+  font-size: 18px;
+}
+
+.categories {
+  font-family: prozak-regular, Arial, Helvetica, sans-serif;
+  border-top: 1px solid #827f7f;
+  border-bottom: 1px solid #827f7f;
+  height: 50px;
+  margin-bottom: 20px;
+  line-height: 52px;
+  font-size: 24px;
+  letter-spacing: 2px;
+}
+
+img.logo {
+  float: right;
+  width: 44px;
+  border: 2px solid #C8C8C8;
+  border-radius: 30px;
+
+}
+
+iframe {
+  border: 1px solid #827f7f;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.video {
+ text-align: center;
+}
+
+.credits {
+  font-family: ibm-regular, Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  line-height: 16px;
+  width: 1000px;
+  margin: auto;
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.downloads {
+  font-family: ibm-regular, Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  line-height: 16px;
+  width: 1000px;
+  margin: auto;
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.downloads a {
+  font-family: ibm-regular, Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  line-height: 16px;
+  font-style: italic;
+}
+
+.description {
+  font-family: ibm-regular, Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  line-height: 16px;
+  width: 1000px;
+  margin: auto;
+  margin-top: 30px;
+  padding: 20px 0 100px 0;
+}

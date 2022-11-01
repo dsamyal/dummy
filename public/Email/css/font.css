@@ -1,0 +1,22 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+@font-face {
+    font-family: 'prozak-bold';
+    src: url('https://artfora.net/Email/fonts/prozak-bold-webfont.woff2') format('woff2'),
+         url('https://artfora.net/Email/fonts/prozak-bold-webfont.woff') format('woff'),
+         url(https://artfora.net/Email/fonts/prozak-bold.ttf) format('ttf');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'prozak-regular';
+    src: url('https://artfora.net/Email/fonts/prozak-regular-webfont.woff2') format('woff2'),
+         url('https://artfora.net/Email/fonts/prozak-regular-webfont.woff') format('woff'),
+         url('https://artfora.net/Email/fonts/prozak-regular.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+
+}

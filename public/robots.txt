@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /stat
+Disallow: /register
+Disallow: /login
+Disallow: /home
+Disallow: /index

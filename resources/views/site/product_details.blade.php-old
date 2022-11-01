@@ -1,0 +1,369 @@
+@extends('layouts.front')
+@section('header_left_content')
+<h2 class="prozak_family back-button" style="letter"><a href="{{ url('/') }}" class="grey-color"><i class="fa fa-caret-left"></i> BACK</a></h2>
+@endsection
+@section('content')
+<style>
+
+	/*
+    #main_slider .slick-list{
+        max-height: 600px !important;
+    }
+
+    #main_slider .slick-slide {
+        text-align:center !important;
+        max-height: 600px !important;
+        overflow:hidden;
+    }
+    */
+	#main_slider .slick-slide {
+		text-align:center !important;
+		overflow:hidden;
+	}
+
+    #main_slider .slick-slide img,
+    #main_slider .slick-slide video {
+        display: inline-block !important;
+        /*min-height: 700px !important;*/
+    }
+
+    /*.slider-nav .slick-list{*/
+    /*    max-height: 170px !important;    */
+    /*}*/
+    
+    /*.slider-nav .slick-slide {*/
+    /*    text-align:center !important;*/
+    /*    max-height: 170px !important;*/
+    /*}*/
+    
+    /*.slider-nav .slick-slide img{*/
+    /*    display: inline-block !important;*/
+    /*    max-height: 170px !important;*/
+    /*    width:100%;*/
+    /*}*/
+    
+    #body-content {
+        padding-bottom: 0px !important;
+    }
+    
+    @media(max-width:767px){
+        #body-content {
+            padding-bottom: 146px !important;
+        }
+    }
+    
+    .slider-nav-item-block.thumbnails,
+    .slider-nav-item-block.thumbnails img{
+        overflow:hidden;
+        height: 80px !important;
+        width: 80px !important;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-position-y: center;
+		background-position-x: right;
+		cursor: pointer;
+    }
+    
+    #product_details_page{
+        min-height: 100vh;
+    }
+	.slick-list {
+		padding: 0px!important;
+	}
+    /*.slider-nav-item-block img{*/
+    /*    width:100%;*/
+    /*}*/
+
+	.slider-nav .slick-track {
+/*
+		width: fit-content !important;
+		width: intrinsic !important;
+		width: -moz-fit-content !important;
+*/
+
+
+		width:100% !important;
+		display:flex !important;
+
+		transform: translate3d(0, 0, 0) !important;
+		margin:0 !important;
+		justify-content: center;
+		align-items: center;
+	}
+	#product_details_page .slider-nav {
+		margin-left: 0px!important;
+	}
+</style>
+        <!-- ===================================
+    	///// Begin Product Details section /////
+    	==================================== -->
+        <section id="product_details_page">
+            <div class="container-fluid">
+                <div class="row">
+				<div class="col-xl-9 col-md-9 side_bar slider-main-lg">
+					<div class="slider mt-2" style="padding-left: 0px !important;">
+	                      <div class="main">
+	                          <div class="slider slider-for" id="main_slider" style="border-radius: 6px;">
+	                              @foreach($product_details->shop_product_files as $product_file)
+									  <?php
+									  $size = getimagesize(asset('images/post/new_images') .'/'.$product_file->file_name);
+									  ?>
+	                              @if($product_file->file_type == 0)
+	                              <div><img src="{{ asset('images/post/new_images') }}/{{ $product_file->file_name }}"
+											 alt="..."
+											@if($size[0] < $size[1])
+											class="main-slider-img-height main-slider-img"
+											@elseif($size[0]> $size[1])
+											class="main-slider-img-width main-slider-img"
+											@else
+											class="main-slider-img-square main-slider-img"
+											@endif
+									data="{{$product_file->file_width}}-{{ $product_file->file_height}}"
+									  ></div>
+	                              @else
+	                              <div><video controls>
+                                    <source src="{{ asset('public/images/post/new_images') }}/{{ $product_file->file_name }}">
+                                    </video></div>
+	                              @endif
+	                              @endforeach
+
+	                          </div>
+	                          <br/>
+	                          <div class="slider slider-nav" >
+	                              @foreach($product_details->shop_product_files as $product_file)
+	                              <div class="mr-30 slider-nav-item-block thumbnails" style="background-image: url({{ asset('images/post/new_images/thumb') }}/{{ $product_file->thumb }})">
+									  <!--<img src="{{ asset('images/post/new_images/thumb') }}/{{ $product_file->thumb }}" class="w-100" />-->
+								  </div>
+	                              @endforeach
+	                          </div>
+	                      </div>
+	                </div>
+				</div>
+				<div class="col-xl-3 col-md-3 side_bar sidebar-main-lg">
+						<div class="row">
+							<div class="col-xs-9 pl-xs-0">
+							    <div class="profile-container d-inline-flex">
+								    <img src="{{ $product_details->shop_profile->shop_image_url }}" class="img_logo">
+								    <p class="heading grey-color ml-2">{{ $product_details->shop_profile->company_name }}</p>
+								</div>
+							</div>
+							<div class="col-xs-3 text-right">
+								<a href="#"><img src="{{ asset('assets/img') }}/btn_ellipsis.png" class="doted_icon"></a>
+							</div>
+						</div>
+						<hr class="mb_0">
+						<h4 class="white-color" style="font-size:22px;">{{ $product_details->shop_profile->company_name }}: <span>{{ $product_details->name }}</span></h4>
+						<hr class="mb m_0">
+						<div class="row product_details_list">
+							<div class="col-xs-6">
+								<p class="grey-color m_0">Posted by:</p>
+							</div>
+							<div class="col-xs-6 text-right">
+								<p class="grey-color m_0">{{ $product_details->shop_profile->name }}</p>
+							</div>
+						</div>
+						<div class="row product_details_list">
+							<div class="col-xs-6">
+								<p class="grey-color m_0">Type:</p>
+							</div>
+							<div class="col-xs-6 text-right">
+								<p class="grey-color m_0">{{ $product_details->type }}</p>
+							</div>
+						</div>
+						<div class="row product_details_list">
+							<div class="col-xs-6">
+								<p class="grey-color m_0">Size:</p>
+							</div>
+							<div class="col-xs-6 text-right">
+								<p class="grey-color m_0">{{ $product_details->package_size }}</p>
+							</div>
+						</div>
+						@foreach($product_details->shop_product_details as $details)
+						<div class="row product_details_list">
+    						<div class="col-xs-6">
+    							<p class="grey-color m_0">{{ $details->title }}:</p>
+    						</div>
+    						<div class="col-xs-6 text-right">
+    							<p class="grey-color m_0">{{ $details->value }}</p>
+    						</div>
+						</div>
+						@endforeach
+						<hr class="m_0 mb mt">
+						<p class="grey-color m_0"><i>Description:</i></p>
+						<p class="grey-color m_0">{{ $product_details->description }}</p>
+						<hr>
+						@if ((is_null($product_details->price)) ||  ($product_details->price=='') ||  ($product_details->price=='0'))
+						<p class="grey-color txt_prise prozak_family">Contact seller for price</p>
+						@else
+						<p class="grey-color txt_prise prozak_family">{{ $product_details->price }} EUR</p>
+						@endif
+						<div class="clearfix"></div>
+						
+						<div class="row">
+							<div class="col-md-12">
+								<div class="row div">
+									<div class="col-xs-3">
+									<input type="text" name="qty" maxlength="12" value="1" class="input-count custom-background-color prozak_family" >
+								</div>
+								<div class="col-xs-4 button-container">
+								    <button type="button" value="+" class="btn_plus custom-background-color" >+</button><br>
+								    <button type="button" value="+" class="btn_mines custom-background-color" >-</button><br>
+							    </div>
+						        <div class="col-xs-5">
+									@if ((is_null($product_details->price)) ||  ($product_details->price=='') ||  ($product_details->price=='0'))
+									@else
+							       <button class="btn_add_to_card btn-block prozak_family" style="background-image:url('{{ asset('assets/img') }}/add-to-cart.png');background-size: 112% 110%;
+    background-position-x: center;">ADD TO CART</button>
+									@endif
+						        </div>
+								</div>	
+							</div>
+						</div>
+						<hr class="hr_add_to_card">
+						<div class="row font-17">
+							<div class="col-xs-6">
+								<p class="grey-color mt_mines" style="margin:0px !important;">Product ({{ count($product_details->product_rating) }}):</p>
+							</div>
+							
+							<div class="col-xs-6 mt_mines text-right" style="margin:0px !important;">
+								<div class="d-inline-flex">
+								    @for ($i = 0; $i < 5; ++$i)
+							    <span><i class="text-warning fa{{ $product_details->rating<=$i?'r':'' }} fa-star star_large"></i></span>
+                                @endfor
+                                <p class="grey-color ml-2-w-20">
+								    @if(count($product_details->product_rating) > 0)
+								    {{ $product_details->rating }}/5
+								    @else
+								    n/a
+								    @endif
+								</p>
+								</div>
+							</div>
+								
+						</div>
+						<div class="row font-17">
+							
+							
+							<div class="col-xs-6">
+								<p class="grey-color mt_mines" style="margin:0px !important;">Seller ({{ count($product_details->seller_rating) }}):</p>
+							</div>
+							
+							<div class="col-xs-6 mt_mines text-right" style="margin:0px !important;">
+							    <div class="d-inline-flex">
+								    @for ($i = 0; $i < 5; ++$i)
+    							    <span><i class="text-warning fa{{ count($product_details->seller_rating)<=$i?'r':'' }} fa-star star_large"></i></span>
+                                    @endfor
+                                    <p class="grey-color ml-2-w-20">
+    								    @if(count($product_details->seller_rating) > 0)
+    								    {{ $product_details->shop_profile->rating }}/5
+    								    @else
+    								    n/a
+    								    @endif
+    								</p>
+								</div>
+							</div>
+						</div>
+						<div class="row font-17">
+							
+							<div class="col-xs-6">
+								<p class="grey-color mt_mines" style="margin:0px !important;">Delivery ({{ count($product_details->product_rating) }}):</p>
+							</div>
+							
+							<div class="col-xs-6 mt_mines text-right" style="margin:0px !important;">
+							   <div class="d-inline-flex">
+							        @for ($i = 0; $i < 5; ++$i)
+							    <span><i class="text-warning fa{{ $product_details->delivery<=$i?'r':'' }} fa-star star_large"></i></span>
+                                @endfor
+                                	<p class="grey-color ml-2-w-20">
+								    @if(count($product_details->product_rating) > 0)
+								    {{ $product_details->delivery }}/5
+								    @else
+								    n/a
+								    @endif
+								</p>
+							   </div>
+							</div>
+						</div>
+
+						<hr>
+
+						<p class="white-color txt_head_product"><b style="font-size:20px;">Product reviews:</b></p>
+						<hr>
+						
+						@foreach($product_details->product_rating as $rating)
+						<div class="row">
+							<div class="col-xs-8 col-sm-7 col-md-8">
+								<div class="new-profile-container d-inline pull-left">
+								    <img src="{{ $rating->profile_image_url }}" class="img-responsive">
+								</div>
+								<p class="grey-color p_head d-inline">{{ $rating->name }}</p>
+							</div>
+							<div class="col-xs-4 col-sm-5 col-md-4 pl-0 rating text-right">
+								@for ($i = 0; $i < 5; ++$i)
+							    <span><i class="text-warning fa{{ count($product_details->product_rating)<=$i?'r':'' }} fa-star star_large"></i></span>
+                                @endfor
+							</div>
+
+							<p class="grey-color rating_review col-xs-12">{{ $rating->product_review }}</p> 
+						</div>
+						<hr>
+						@endforeach
+				</div>
+			</div>
+			</div>
+        </section>
+        <!-- ===================================
+    	///// Begin Product Details section /////
+    	==================================== -->
+    	
+@endsection
+
+@section('scripts')
+<link rel='stylesheet' href='https://rawgit.com/kenwheeler/slick/master/slick/slick.css'>
+    	<link rel='stylesheet' href='https://rawgit.com/kenwheeler/slick/master/slick/slick-theme.css'>
+  <script src='https://kenwheeler.github.io/slick/slick/slick.js'></script>
+<script type="text/javascript">
+    $('.slider-for').slick({
+      infinite: true,
+      fade: true,
+      cssEase: 'linear',
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: true,
+      asNavFor: '.slider-nav',
+      autoplay: false,
+      autoplaySpeed: 2000,
+      //centerMode: true,
+     // adaptiveHeight: true,
+
+    });
+
+    $('.slider-nav').slick({
+        centerMode: true,
+        centerPadding: '0px',
+        slidesToShow: 4,
+      slidesToScroll: 1,
+      asNavFor: '.slider-for',
+      dots: false,
+      focusOnSelect: true,
+      arrows: false,
+      autoplaySpeed: 2000,
+      infinite: false,
+      variableWidth: true,
+
+    });
+
+    $('a[data-slide]').click(function (e) {
+      e.preventDefault();
+      var slideno = $(this).data('slide');
+      $('.slider-nav').slick('slickGoTo', slideno - 1);
+    });
+    $("#filter").click(function () {
+      $(".filter-div").show();
+    });
+    $(".filter-div").mouseleave(function () {
+      $(".filter-div").hide();
+    });
+  </script>
+@endsection

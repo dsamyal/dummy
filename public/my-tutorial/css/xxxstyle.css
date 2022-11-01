@@ -1,0 +1,8 @@
+@font-face {
+  font-family: prozak-regulart;
+  src: url(../fonts/prozak-regular.ttf);
+}
+
+body, h1, h2, h3, h4, h5, h6 {
+  font-family: prozak-regular, Arial, Helvetica, sans-serif;
+}

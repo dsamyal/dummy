@@ -1,0 +1,626 @@
+@extends('layouts.front')
+@section('content')
+<style>
+
+	/*
+    #main_slider .slick-list{
+        max-height: 600px !important;
+    }
+
+    #main_slider .slick-slide {
+        text-align:center !important;
+        max-height: 600px !important;
+        overflow:hidden;
+    }
+    */
+	#main_slider .slick-slide {
+		text-align:center !important;
+		overflow:hidden;
+	}
+
+    #main_slider .slick-slide img,
+    #main_slider .slick-slide video {
+        display: inline-block !important;
+        /*min-height: 700px !important;*/
+    }
+
+    /*.slider-nav .slick-list{*/
+    /*    max-height: 170px !important;    */
+    /*}*/
+
+    /*.slider-nav .slick-slide {*/
+    /*    text-align:center !important;*/
+    /*    max-height: 170px !important;*/
+    /*}*/
+
+    /*.slider-nav .slick-slide img{*/
+    /*    display: inline-block !important;*/
+    /*    max-height: 170px !important;*/
+    /*    width:100%;*/
+    /*}*/
+
+    #body-content {
+        padding-bottom: 0px !important;
+    }
+
+    @media(max-width:767px){
+        #body-content {
+            padding-bottom: 146px !important;
+        }
+    }
+
+    .slider-nav-item-block.thumbnails,
+    .slider-nav-item-block.thumbnails img{
+        overflow:hidden;
+        height: 80px !important;
+        width: 80px !important;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-position-y: center;
+		background-position-x: right;
+		cursor: pointer;
+    }
+
+    #product_details_page{
+        /*min-height: 100vh;*/
+    }
+	.slick-list {
+		padding: 0px!important;
+	}
+    /*.slider-nav-item-block img{*/
+    /*    width:100%;*/
+    /*}*/
+
+	.slider-nav .slick-track {
+/*
+		width: fit-content !important;
+		width: intrinsic !important;
+		width: -moz-fit-content !important;
+*/
+
+
+		width:100% !important;
+		display:flex !important;
+
+		transform: translate3d(0, 0, 0) !important;
+		margin:0 !important;
+		justify-content: center;
+		align-items: center;
+	}
+	#product_details_page .slider-nav {
+		margin-left: 0px!important;
+	}
+
+    .product_details_page__btn {
+        position: absolute;
+        letter-spacing: 5px;
+        top: 8px;
+        left: 20px;
+        z-index: 999;
+    }
+
+    .logo__img {
+        width: 45px;
+        height: 45px;
+        margin-right: 5px;
+        float: left;
+    }
+
+    .slider-logo {
+        display: block;
+        margin-bottom: 20px;
+    }
+
+    .slider-logo span {
+        color: gray;
+    }
+
+    .logo__title {
+        margin-top: 5px;
+        margin-bottom: 0;
+    }
+
+    .slider-logo span {
+        font-size: 12px;
+    }
+
+    .table--custom table {
+        height: auto;
+    }
+
+    .table--custom tbody tr {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .side_bar {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .table--custom tbody tr td {
+        border: none !important;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .table--custom {
+        height: auto !important;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+    }
+
+    .table--custom .table__title {
+        color: #fff;
+        font-weight: 600;
+    }
+
+    .globe-icon {
+        margin-top: 1px;
+        margin-right: 1px;
+    }
+
+    .btn-icon--facebook {
+        margin-bottom: 3px;
+    }
+
+    .btn-icon--instagram {
+        margin-bottom: 3px;
+    }
+
+    .btn-icon--twitter {
+        margin-bottom: 3px;
+    }
+
+    .slider-row {
+        overflow: hidden;
+    }
+
+    .slider-main-product {
+        margin-top: 8px;
+    }
+
+    .stick-view-thumb {
+        padding-top: 72px;
+    }
+
+    table.table--custom {
+        font-size: 15px;
+    }
+
+    .side-bar-right {
+        padding: 10px 0;
+    }
+
+    @media (max-width: 1400px) {
+        .slider-main-product {
+            margin-top: 49px;
+        }
+
+        .product_details_page__btn {
+            top: -35px;
+        }
+
+        #main_slider {
+            height: calc(100vh - 170px);
+        }
+
+        .stick-view-thumb {
+            padding-top: 20px;
+        }
+    }
+
+    @media (max-width: 900px) {
+        #main_slider {
+            height: auto !important;
+        }
+
+        .stick-view-thumb {
+            padding-top: 30px;
+        }
+    }
+
+</style>
+        <!-- ===================================
+    	///// Begin Product Details section /////
+    	==================================== -->
+        <section id="product_details_page">
+    <div class="container-fluid">
+        <div class="row slider-row">
+            <div class="col-xl-9 col-md-9 slider-main-lg slider-main-product">
+                <a href="{{ url('/') }}" class="product_details_page__btn white-color prozak_family h3">BACK</a>
+                <div class="slider slider-for" id="main_slider" style="border-radius: 6px;">
+                    @foreach($product_details->shop_product_files as $product_file)
+                        <?php
+                        $size = getimagesize(public_path('images/post/new_images') . '/' . $product_file->file_name);
+                        ?>
+                        @if($product_file->file_type == 0)
+                            <div>
+                                <img src="{{ asset('images/post/new_images') }}/{{ $product_file->file_name }}"
+                                     alt="..."
+                                     @if($size[0] < $size[1])
+                                     class="main-slider-img-height main-slider-img"
+                                     @elseif($size[0]> $size[1])
+                                     class="main-slider-img-width main-slider-img"
+                                     @else
+                                     class="main-slider-img-square main-slider-img"
+                                     @endif
+                                     style="max-height: calc(100vh - 200px);"
+                                     data="{{$product_file->file_width}}-{{ $product_file->file_height}}"
+                                >
+                            </div>
+                        @else
+                            <div>
+                                <video controls>
+                                    <source
+                                            src="{{ asset('public/images/post/new_images') }}/{{ $product_file->file_name }}">
+                                </video>
+                            </div>
+                        @endif
+                    @endforeach
+                </div>
+                <div class="col-xs-12 stick-view-thumb">
+                    <div class="slider slider-nav ">
+                        @foreach($product_details->shop_product_files as $product_file)
+                            <div class="mr-30 slider-nav-item-block thumbnails"
+                                 style="background-image: url({{ asset('images/post/new_images') }}/{{ $product_file->file_name }})">
+                                <!doctype html>
+                                <html lang="en">
+                                <head>
+                                    <meta charset="UTF-8">
+                                    <meta name="viewport"
+                                          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+                                    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+                                    <title>Document</title>
+                                </head>
+                                <body>
+
+                                </body>
+                                </html>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-3 side_bar side-bar-right sidebar-main-lg">
+                <div class="sidebar__top">
+                    <a class="slider-logo" href="#">
+                        <img class="logo__img" src="{{ asset('assets/img/logo.png') }}" alt="logo">
+                        <h2 class="logo__title h4 ibm-light-family white-color">ARTfora Shop</h2>
+                        <span>Community</span>
+                    </a>
+
+                    <table class="table table--custom">
+                        <tbody>
+                        <tr>
+                            <td class="table__title">Posted:</td>
+                            <td>{{ date('d.m.Y', strtotime($product_details->approval_date)) }}</td>
+                        </tr>
+                        <tr>
+                            <td class="table__title">Product name:</td>
+                            <td>{{ $product_details->name ?? '-' }}</td>
+                        </tr>
+                        <tr>
+                            <td class="table__title">Price:</td>
+                            @if ((is_null($product_details->price)) ||  ($product_details->price=='') ||  ($product_details->price=='0'))
+                                <td>Contact seller for price</td>
+                            @else
+                                <td>{{ $product_details->currency.' '.$product_details->price }}</td>
+                            @endif
+                        </tr>
+                        <tr>
+                            <td class="table__title">Shipping:</td>
+                            <td>{{ $product_details->shipping_included ?? '-' }}</td>
+                        </tr>
+                        <tr>
+                            <td class="table__title">Description:</td>
+                            <td class="text-right">{{ $product_details->description ?? '-' }}</td>
+                        </tr>
+                        <tr>
+                            <td class="table__title">W/H/D:</td>
+                            <td>{{ $product_details->package_size ?? '-'}}</td>
+                        </tr>
+                        <tr>
+                            <td class="table__title">Weight:</td>
+                            <td>{{ $product_details->package_weight ?? '-'}}</td>
+                        </tr>
+                        <tr>
+                            <td class="table__title">Quantity for sale:</td>
+                            <td>{{ $product_details->quantity ?? '-' }}</td>
+                        </tr>
+                        <tr>
+                            <td class="table__title">Categories:</td>
+                        </tr>
+                        <tr>
+                            <td>{{ $product_details->category_type ?? '-' }}</td>
+                        </tr>
+                        <tr>
+                            <td class="table__title">Tags:</td>
+                        </tr>
+                        <tr>
+                            <td>{{ $product_details->tags ?? '-' }}</td>
+                        </tr>
+                        <tr>
+                            <td class="table__title">About ARTfora Shop</td>
+                        </tr>
+                        <tr>
+                            <td>Giving artist a free place to display their work</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="sidebar__buttons">
+                    <button class="detailed-button" data-toggle="modal" data-target="#exampleModal">Contact seller
+                    </button>
+                    @foreach($product_details->user->shopUrls as $url)
+                        <button class="detailed-button" data-toggle="modal"
+                                onclick="window.open('http://{{ $url->url }}')">
+                            @if($url->is_facebook)
+                                <img class="btn-icon btn-icon--facebook" width="25" height="25"
+                                     src="/images/facebook-icon.svg" alt="instagram">
+                                Go to Facebook
+                            @elseif($url->is_twitter)
+                                <img class="btn-icon btn-icon--twitter" width="30" height="30"
+                                     src="/images/twitter-icon.svg" alt="twitter">
+                                Go to Twitter
+                            @elseif($url->is_instagramm)
+                                <img class="btn-icon btn-icon--instagram" width="20" height="20"
+                                     src="/images/instagram-icon.svg" alt="instagram">
+                                Go to Instagram
+                            @else
+                                <i class="fa fa-globe globe-icon"></i>
+                                Go to Website
+                            @endif
+                        </button>
+                    @endforeach
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+        <!-- ===================================
+    	///// Begin Product Details section /////
+    	==================================== -->
+		<!-- Modal -->
+		<div id="emailModal" class="modal fade " role="dialog">
+			<div class="modal-dialog ">
+				<div class="table">
+					<div class="table-cell">
+				<!-- Modal content-->
+				<div class="modal-content ">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Email {{ $product_details->shop_profile->company_name }}</h4>
+					</div>
+					<div class="modal-body">
+						<form role="form" method="POST" action="#" id="emailForm">
+							<div class="form-group">
+								<div>
+									<input type="email" class="form-control " name="email" id="email" placeholder="Your email">
+								</div>
+							</div>
+							<div class="form-group">
+								<div>
+									<input type="text" class="form-control" name="name" id="name" placeholder="Your name">
+								</div>
+							</div>
+							<div class="form-group">
+								<div>
+									<textarea class="form-control" rows ="6" placeholder="Your message" name="message" id="message"></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<div id="error_messages" class="error_messages"></div>
+							</div>
+							<input type="hidden" name="site_button_id" value="0" id="site_button_id">
+							<input type="hidden" name="shop_product_id" value="0" id="shop_product_id">
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="detailed-button" id ="email-form-sending" >Send email</button>
+					</div>
+				</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Test modal Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="margin: 15px">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has</p>
+                <form>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" style="margin: 0" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" style="margin: 0">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@endsection
+
+@section('scripts')
+<link rel='stylesheet' href='https://rawgit.com/kenwheeler/slick/master/slick/slick.css'>
+    	<link rel='stylesheet' href='https://rawgit.com/kenwheeler/slick/master/slick/slick-theme.css'>
+  <script src='https://kenwheeler.github.io/slick/slick/slick.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js'></script>
+
+<script type="text/javascript">
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $(window).on("load", function() {
+
+    $('.slider-for').slick({
+      infinite: true,
+      fade: true,
+      cssEase: 'linear',
+      //variableWidth: true,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: true,
+      asNavFor: '.slider-nav',
+      autoplay: false,
+      autoplaySpeed: 2000,
+      centerMode: true,
+     // adaptiveHeight: true,
+
+    });
+
+    $('.slider-nav').slick({
+        centerMode: true,
+        centerPadding: '0px',
+        slidesToShow: 4,
+      slidesToScroll: 1,
+      asNavFor: '.slider-for',
+      dots: false,
+      focusOnSelect: true,
+      arrows: false,
+      autoplaySpeed: 2000,
+      infinite: false,
+      variableWidth: true,
+
+    });
+
+    $('a[data-slide]').click(function (e) {
+      e.preventDefault();
+      var slideno = $(this).data('slide');
+      $('.slider-nav').slick('slickGoTo', slideno - 1);
+    });
+    $("#filter").click(function () {
+      $(".filter-div").show();
+    });
+    $(".filter-div").mouseleave(function () {
+      $(".filter-div").hide();
+    });
+
+    $('.product-page-user-click').click(function(e){
+
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        var user_id = $(this).data('user-id');
+
+        $.ajax({
+            type: "POST",
+            url: "{{url('toggle_options')}}",
+            data: {user_id:user_id, type:"user", action:"user-selection"},
+            success:function(response)
+            {
+                window.location.href="{{ route('site.index') }}";
+            }
+        });
+    });
+
+    $("#emailForm").validate({
+        rules: {
+            name: "required",
+            email: {
+                required: true,
+                email: true
+            },
+            message: "required"
+        }
+    });
+
+    $("#email_seller_id, #hire_id").click(function(){
+        $("#emailForm")[0].reset();
+        $("#error_messages").html('')
+        var site_button_id = $(this).data("id");
+        var shop_product_id = $(this).data("product-id");
+        $("#site_button_id").val(site_button_id);
+        $("#shop_product_id").val(shop_product_id);
+
+        $("#emailModal").modal('show');
+    });
+
+
+	$("#email-form-sending").click(function(){
+	    if($("#emailForm").valid()) {
+			var url='{{route('send-product-email')}}';
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: {
+                    site_button_id: $("#site_button_id").val(),
+                    shop_product_id: $("#shop_product_id").val(),
+                    email: $("#email").val(),
+                    name: $("#name").val(),
+                    message: $("#message").val()
+                },
+                success:function(response)
+                {
+                    if(response.success ==false) {
+                        $("#error_messages").html(response.error);
+                    }
+                    if(response.success ==true) {
+                        $("#emailModal").modal('hide');
+                    }
+                },
+				error:function() {
+                    $("#error_messages").html('System error');
+				}
+            });
+		};
+	});
+
+    $(".detailed-button").click(function(){
+		var url='{{route('set-product-click')}}';
+		$.ajax({
+			type: "POST",
+			url: url,
+			data: {
+				site_button_id: $("#site_button_id").val(),
+				shop_product_id: $("#shop_product_id").val(),
+			},
+			success:function(response)
+			{
+				console.log("set-product-click:success")
+			},
+			error:function() {
+				console.log("set-product-click:error")
+			}
+		});
+    });
+
+
+	});
+
+	$('.slider-for').on('init', function() {
+		
+	});
+
+  </script>
+@endsection
